@@ -8,29 +8,42 @@
  *     ListNode(int x, ListNode *next) : val(x), next(next) {}
  * };
  */
+ListNode* get_mid(ListNode* m){
+    ListNode* slow=m;
+    ListNode* fast=m;
+    while(fast && fast->next){
+        slow=slow->next;
+        fast=fast->next->next;
+    }
+    return slow;
+}
+ListNode* reverse(ListNode* x){
+    if(x==NULL || x->next==NULL){
+        return x;
+    }
+    ListNode* tmp=x->next;
+    x->next=NULL;
+    ListNode* head=reverse(tmp);
+    tmp->next=x;
+    return head;
+}
 class Solution {
 public:
     bool isPalindrome(ListNode* head) {
         if(head->next==NULL){
             return true;
         }
-        stack<int> stk;
-        ListNode* tmp=head;
-        while(tmp){
-            stk.push(tmp->val);
-            tmp=tmp->next;
-        }
-        
-        tmp=head;
-        while(tmp && !stk.empty()){
-            if(stk.top()==tmp->val){
-                stk.pop();
-                tmp=tmp->next;
-            }
-            else{
+        ListNode* mid=get_mid(head);
+        ListNode* t=reverse(mid);
+        ListNode* h=head;
+        while(h&&t){
+            if(h->val!=t->val){
                 return false;
             }
+            h=h->next;
+            t=t->next;
         }
+        
         return true;
     }
 };
