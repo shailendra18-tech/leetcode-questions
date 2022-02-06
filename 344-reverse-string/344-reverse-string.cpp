@@ -1,11 +1,17 @@
+void swap(int& i, int& j, vector<char>& s){
+    swap(s[i],s[j]);
+    i++;
+    j--;
+}
+
+
 class Solution {
 public:
     void reverseString(vector<char>& s) {
-        if(s.size()<2){
-            return;
-        }
-        for(int i=0; i<s.size()/2; i++){
-            swap(s[i], s[s.size()-i-1]);
+        int i=0;
+        int j=s.size()-1;
+        while(i<j){
+            swap(i,j,s);
         }
     }
 };
