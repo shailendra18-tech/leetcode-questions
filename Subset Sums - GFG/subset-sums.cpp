@@ -10,9 +10,7 @@ void sums(vector<int>& arr, int N, int i, int sum, vector<int>& ans){
         return;
     }
     
-    sum+=arr[i];
-    sums(arr, N, i+1, sum, ans);
-    sum-=arr[i];
+    sums(arr, N, i+1, sum+arr[i], ans);
     sums(arr, N, i+1, sum, ans);
 }
 class Solution
