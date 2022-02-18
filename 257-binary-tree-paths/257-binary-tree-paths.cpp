@@ -22,8 +22,8 @@ void treepaths(TreeNode* root, vector<string>& ans, string str){
         treepaths(root->left, ans, str+"->");
         treepaths(root->right, ans, str+"->");
     }
-    str.pop_back();
-    str.pop_back();
+    //str.pop_back();
+   // str.pop_back();
 }
 class Solution {
 public:
